@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineFlow — Motion-First 4K Cinema Experience</title>
+  <meta name="description" content="Next-generation streaming media application powered by fluid motion design, 3D tilt physics, and sub-millisecond playback resolution.">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='%23ffb800'><rect width='48' height='48' rx='14' fill='%23ffb800'/><path d='M18 14L34 24L18 34V14Z' fill='%23000000'/></svg>">
+
+  <!-- Google Fonts: Syne (Futuristic Display), Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- HLS.js Video Streaming -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Motion Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=motion_v1">
+</head>
+<body>
+
+  <!-- Cinema Animated Loading Splash Screen (Popcorn, Cola, Camera, Film) -->
+  <div class="cinema-loading-screen" id="cinemaLoadingScreen">
+    <div class="loader-ambient-glow"></div>
+    
+    <div class="loader-content-cluster">
+      
+      <!-- 4 Animated Cinema Artifacts: Popcorn, Cola, Camera, Film -->
+      <div class="loader-icons-stage">
+        
+        <!-- 1. Animated Popcorn -->
+        <div class="cinema-artifact-wrap artifact-popcorn" title="Popping Popcorn">
+          <svg class="artifact-svg" viewBox="0 0 100 120" width="76" height="92">
+            <!-- Popping Kernels -->
+            <circle class="pop-kernel kernel-1" cx="35" cy="24" r="7" fill="#ffd566" />
+            <circle class="pop-kernel kernel-2" cx="50" cy="16" r="8" fill="#ffb800" />
+            <circle class="pop-kernel kernel-3" cx="65" cy="22" r="6.5" fill="#ffe082" />
+            <circle class="pop-kernel kernel-4" cx="42" cy="9" r="5" fill="#ffffff" />
+            <circle class="pop-kernel kernel-5" cx="58" cy="7" r="6" fill="#ffd566" />
+
+            <!-- Popcorn Mound in Box -->
+            <path d="M22 45 Q35 32 50 35 Q65 32 78 45 Z" fill="#ffe082" />
+            <circle cx="32" cy="38" r="8" fill="#ffd566" />
+            <circle cx="50" cy="34" r="9" fill="#ffb800" />
+            <circle cx="68" cy="38" r="8" fill="#ffe082" />
+
+            <!-- Popcorn Bucket with Red/White Stripes -->
+            <path d="M25 45 L32 110 L68 110 L75 45 Z" fill="#e50914" />
+            <polygon points="34,45 38,110 44,110 41,45" fill="#ffffff" />
+            <polygon points="48,45 47,110 53,110 55,45" fill="#ffffff" />
+            <polygon points="62,45 56,110 62,110 69,45" fill="#ffffff" />
+            <!-- Gold Rim Highlight -->
+            <rect x="23" y="43" width="54" height="4" rx="2" fill="#ffd566" />
+          </svg>
+          <span class="artifact-label">Popcorn</span>
+        </div>
+
+        <!-- 2. Animated Cinema Cola Cup -->
+        <div class="cinema-artifact-wrap artifact-cola" title="Chilling Soda">
+          <svg class="artifact-svg" viewBox="0 0 100 120" width="76" height="92">
+            <!-- Straw -->
+            <path class="soda-straw" d="M54 45 L61 10 L74 5" fill="none" stroke="#e50914" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Fizzy Floating Bubbles -->
+            <circle class="soda-bubble b-1" cx="45" cy="55" r="2.5" fill="#00f2fe" opacity="0.8" />
+            <circle class="soda-bubble b-2" cx="55" cy="65" r="3" fill="#00f2fe" opacity="0.9" />
+            <circle class="soda-bubble b-3" cx="42" cy="78" r="2" fill="#00f2fe" opacity="0.7" />
+            <circle class="soda-bubble b-4" cx="58" cy="85" r="2.5" fill="#00f2fe" opacity="0.8" />
+
+            <!-- Cup Lid -->
+            <ellipse cx="50" cy="45" rx="26" ry="6" fill="#f0f2f5" />
+            <ellipse cx="50" cy="44" rx="23" ry="4" fill="#d0d5dd" />
+
+            <!-- Cup Body -->
+            <path d="M26 46 L33 110 L67 110 L74 46 Z" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+            
+            <!-- Graphic on Cup: Ice / Wave Accent -->
+            <path d="M30 65 Q50 78 70 65 L68 76 Q50 90 32 76 Z" fill="#00f2fe" opacity="0.85" />
+            <circle cx="50" cy="94" r="7" fill="#ff2a85" opacity="0.85" />
+          </svg>
+          <span class="artifact-label">Cold Soda</span>
+        </div>
+
+        <!-- 3. Animated Cinema Studio Camera -->
+        <div class="cinema-artifact-wrap artifact-camera" title="Rolling Camera">
+          <svg class="artifact-svg" viewBox="0 0 100 120" width="76" height="92">
+            <!-- Dual Film Wheels / Reels -->
+            <g class="spinning-camera-reels">
+              <!-- Left Reel -->
+              <circle cx="34" cy="30" r="15" fill="#1e293b" stroke="#ffb800" stroke-width="2.5" />
+              <circle cx="34" cy="30" r="4" fill="#ffb800" />
+              <line x1="34" y1="15" x2="34" y2="45" stroke="#ffb800" stroke-width="1.5" />
+              <line x1="19" y1="30" x2="49" y2="30" stroke="#ffb800" stroke-width="1.5" />
+
+              <!-- Right Reel -->
+              <circle cx="66" cy="30" r="15" fill="#1e293b" stroke="#ffb800" stroke-width="2.5" />
+              <circle cx="66" cy="30" r="4" fill="#ffb800" />
+              <line x1="66" y1="15" x2="66" y2="45" stroke="#ffb800" stroke-width="1.5" />
+              <line x1="51" y1="30" x2="81" y2="30" stroke="#ffb800" stroke-width="1.5" />
+            </g>
+
+            <!-- Camera Body -->
+            <rect x="22" y="45" width="56" height="42" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2" />
+            <!-- Viewfinder -->
+            <rect x="35" y="40" width="20" height="5" rx="2" fill="#334155" />
+
+            <!-- Lens Cone & Flare -->
+            <polygon points="78,54 94,44 94,78 78,68" fill="#1e293b" stroke="#ffb800" stroke-width="1.5" />
+            <ellipse class="camera-lens-flare" cx="94" cy="61" rx="3" ry="17" fill="#00f2fe" opacity="0.9" />
+            <circle class="recording-light" cx="30" cy="54" r="3" fill="#ff2a85" />
+
+            <!-- Base Stand -->
+            <rect x="44" y="87" width="12" height="15" fill="#334155" />
+            <line x1="30" y1="105" x2="50" y2="98" stroke="#475569" stroke-width="3" />
+            <line x1="70" y1="105" x2="50" y2="98" stroke="#475569" stroke-width="3" />
+            <line x1="50" y1="105" x2="50" y2="98" stroke="#475569" stroke-width="3" />
+          </svg>
+          <span class="artifact-label">4K Camera</span>
+        </div>
+
+        <!-- 4. Animated 35mm Film Strip / Reel -->
+        <div class="cinema-artifact-wrap artifact-film" title="35mm Film Ribbon">
+          <svg class="artifact-svg" viewBox="0 0 100 120" width="76" height="92">
+            <!-- Film Reel Wheel -->
+            <g class="spinning-film-reel">
+              <circle cx="50" cy="50" r="32" fill="#0f172a" stroke="#ffd566" stroke-width="3" />
+              <circle cx="50" cy="50" r="10" fill="#ffd566" />
+              <!-- Cutouts -->
+              <circle cx="50" cy="28" r="6" fill="#060709" />
+              <circle cx="50" cy="72" r="6" fill="#060709" />
+              <circle cx="28" cy="50" r="6" fill="#060709" />
+              <circle cx="72" cy="50" r="6" fill="#060709" />
+            </g>
+
+            <!-- Unrolling Celluloid Film Strip with Sprocket Holes -->
+            <g class="film-strip-ribbon">
+              <path d="M22 68 C 15 85, 25 105, 45 106 C 65 107, 85 92, 92 108" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round" />
+              <path d="M22 68 C 15 85, 25 105, 45 106 C 65 107, 85 92, 92 108" fill="none" stroke="#ffb800" stroke-width="2" stroke-dasharray="3 3" />
+            </g>
+          </svg>
+          <span class="artifact-label">35mm Film</span>
+        </div>
+
+      </div>
+
+      <!-- Loading Typography & Branding -->
+      <div class="loader-brand-title">
+        CINE<span style="color: var(--accent-amber);">FLOW</span>
+      </div>
+
+      <!-- Dynamic Step Text -->
+      <div class="loader-status-text" id="loaderStatusText">
+        Popping corn, rolling 35mm film & preparing 4K canvas...
+      </div>
+
+      <!-- Progress Track -->
+      <div class="loader-progress-track">
+        <div class="loader-progress-bar" id="loaderProgressBar"></div>
+      </div>
+
+      <div class="loader-percentage" id="loaderPercentage">0%</div>
+
+    </div>
+  </div>
+
+  <!-- Ambient Dynamic Lighting Mesh & 35mm Film Grain -->
+  <div class="ambient-lighting-mesh" id="ambientMesh">
+    <div class="ambient-blob blob-1" id="blob1"></div>
+    <div class="ambient-blob blob-2" id="blob2"></div>
+    <div class="ambient-blob blob-3" id="blob3"></div>
+  </div>
+  <div class="film-grain-overlay"></div>
+
+  <!-- 1. Minimalist Floating Glass Navbar -->
+  <header class="motion-navbar" id="motionNavbar">
+    <div class="navbar-inner">
+
+      <!-- Brand Monogram -->
+      <a href="#" class="brand-monogram" id="brandHomeBtn">
+        <div class="brand-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        </div>
+        <div class="brand-text">CINE<span>FLOW</span></div>
+      </a>
+
+      <!-- Quick Search Spotlight Trigger (Cmd+K) -->
+      <div class="nav-search-trigger" id="openCommandPaletteBtn" title="Press ⌘K or / to search">
+        <div class="search-trigger-content">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Search movies, Denis Villeneuve, 4K streams...</span>
+        </div>
+        <span class="search-shortcut-badge">⌘K</span>
+      </div>
+
+      <!-- Right Status & User Actions -->
+      <div class="nav-actions">
+        <div class="proxy-status-pill" id="networkStatusPill" title="Click to test network status or re-sync">
+          <div class="proxy-pulse-dot" id="networkPulseDot"></div>
+          <span id="networkStatusText">4K PROXY LIVE</span>
+        </div>
+
+        <button class="nav-icon-pill" id="navWatchlistBtn" title="View Watchlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span class="nav-badge-count" id="watchlistBadgeCount">0</span>
+        </button>
+
+        <button class="nav-icon-pill" id="navExportBtn" title="Export Stream / yt-dlp Command">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 2. Hero Kinetic Stage (Full-Bleed Visual Canvas) -->
+  <main class="hero-kinetic-stage" id="heroStage">
+
+    <!-- Dynamic Dual-Layer Backdrop with Ken-Burns Breathing -->
+    <div class="hero-backdrop-layer">
+      <div class="hero-backdrop-image active" id="heroBackdropImageA" style="background-image: url('https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0x2.jpg');"></div>
+      <div class="hero-backdrop-image next" id="heroBackdropImageB"></div>
+      <div class="hero-backdrop-mask"></div>
+    </div>
+
+    <!-- Perimeter Floating Stage Chevrons -->
+    <button class="hero-floating-nav prev" id="heroFloatingPrev" title="Previous Masterpiece (←)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-floating-nav next" id="heroFloatingNext" title="Next Masterpiece (→)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Hero Content Grid -->
+    <div class="hero-container">
+
+      <!-- Left Narrative Column -->
+      <div class="hero-narrative">
+
+        <!-- Hyper-Animated Hero Slider Navigation & Controller Bar -->
+        <div class="hero-slider-controller" id="heroSliderController">
+          <div class="slider-nav-arrows">
+            <button class="slider-arrow-btn" id="heroPrevBtn" title="Previous Movie (Left Arrow)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-arrow-btn" id="heroNextBtn" title="Next Movie (Right Arrow)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+
+          <div class="slider-pagination-track" id="heroSliderPagination">
+            <!-- Dynamically populated with interactive indicators -->
+          </div>
+
+          <div class="slider-meta-controls">
+            <span class="slider-counter" id="heroSlideCounter">01 / 05</span>
+            <button class="slider-playpause-btn" id="heroPlayPauseBtn" title="Pause / Resume Auto Slider">
+              <span class="playpause-icon" id="heroPlayPauseIcon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Standalone Individual Title Return Pill (Visible when exploring an individual title) -->
+        <div class="hero-return-pill" id="heroReturnToSliderBtn" style="display: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>Return to Featured Showcase Slider</span>
+        </div>
+
+        <!-- Theatrical Event Notice Banner (for upcoming theatrical titles like Infinity Castle) -->
+        <div class="hero-theatrical-banner" id="heroTheatricalBanner" style="display: none;">
+          <div class="theatrical-badge-pill">🎬 THEATRICAL EVENT</div>
+          <div class="theatrical-desc" id="heroTheatricalDesc">Upcoming theatrical release. Playing verified prologue & special.</div>
+          <button class="theatrical-bridge-btn" id="heroBridgeTvBtn" title="Watch preceding arc">Watch Season 4 Finale →</button>
+        </div>
+
+        <!-- Status Ribbon -->
+        <div class="hero-status-ribbon" id="heroStatusRibbon">
+          <span class="ribbon-star">★</span>
+          <span class="ribbon-text" id="heroRatingBadge">8.6 IMDb</span>
+          <span class="ribbon-divider"></span>
+          <span class="ribbon-text" id="heroYearBadge">2024</span>
+          <span class="ribbon-divider"></span>
+          <span class="ribbon-text" id="heroRuntimeBadge">2h 46m</span>
+          <span class="ribbon-divider"></span>
+          <span class="ribbon-text" id="heroCertBadge">PG-13</span>
+        </div>
+
+        <!-- Monumental Headline -->
+        <h1 class="hero-title-motion" id="heroTitle">Dune: Part Two</h1>
+
+        <!-- Tagline -->
+        <div class="hero-tagline-motion" id="heroTagline">"Long live the fighters."</div>
+
+        <!-- Genre Pills -->
+        <div class="hero-genres-row" id="heroGenresRow">
+          <span class="motion-genre-chip">Sci-Fi</span>
+          <span class="motion-genre-chip">Adventure</span>
+          <span class="motion-genre-chip">Action</span>
+        </div>
+
+        <!-- Synopsis -->
+        <p class="hero-synopsis-text" id="heroSynopsis">
+          Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.
+        </p>
+
+        <!-- Call to Actions -->
+        <div class="hero-action-cluster">
+          <button class="btn-stream-kinetic" id="heroStreamBtn">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Stream in 4K</span>
+          </button>
+
+          <!-- TV Series Episodes Quick Launcher -->
+          <button class="btn-glass-trailer" id="heroEpisodesBtn" style="display: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            <span>Episodes</span>
+          </button>
+
+          <button class="btn-glass-trailer" id="heroTrailerBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            <span>Watch Trailer</span>
+          </button>
+
+          <button class="btn-icon-bookmark" id="heroBookmarkBtn" title="Save to Watchlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+
+        <!-- Technical Specs -->
+        <div class="hero-specs-row">
+          <span class="spec-badge">IMAX 1.90:1</span>
+          <span class="spec-badge">4K ULTRA HD</span>
+          <span class="spec-badge">DOLBY ATMOS</span>
+          <span id="heroProductionSpecs">Loading specs...</span>
+        </div>
+
+        <!-- Live Top 5 Trending Carousel Switcher -->
+        <div class="hero-carousel-switcher" id="heroCarouselSwitcher">
+          <!-- Dynamically populated from TMDB trending -->
+        </div>
+
+      </div>
+
+      <!-- Right Interactive 3D Key-Art Poster -->
+      <div class="hero-stage-visual">
+        <div class="poster-3d-card" id="poster3DCard">
+          <div class="poster-ambient-backlight" id="posterBacklight"></div>
+          
+          <div class="poster-inner-surface">
+            <img class="poster-main-image" id="posterMainImage" src="" alt="Key Art" loading="eager">
+            <div class="poster-specular-shine" id="posterSpecularShine"></div>
+
+            <div class="poster-top-chips">
+              <span class="poster-pill-badge" id="posterCertBadge">4K HDR</span>
+              <span class="poster-pill-badge poster-rating-badge" id="posterRatingChip">★ --</span>
+            </div>
+
+            <div class="poster-hover-quick-play">
+              <div class="quick-play-ring">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+              </div>
+              <span class="quick-play-label">Instant Play</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Genre Discovery Bar -->
+  <nav class="genre-discovery-bar" id="genreDiscoveryBar">
+    <button class="genre-filter-pill active" data-genre="all">🔥 All Trending</button>
+    <button class="genre-filter-pill" data-genre="878" data-type="movie">🚀 Sci-Fi & Fantasy</button>
+    <button class="genre-filter-pill" data-genre="28" data-type="movie">💥 Action & Adventure</button>
+    <button class="genre-filter-pill" data-genre="80" data-type="movie">🕵️ Crime & Thriller</button>
+    <button class="genre-filter-pill" data-genre="16" data-type="movie">✨ Animation</button>
+    <button class="genre-filter-pill" data-genre="18" data-type="movie">🎭 Drama</button>
+    <button class="genre-filter-pill" data-genre="10765" data-type="tv">📺 Sci-Fi Series</button>
+    <button class="genre-filter-pill" data-genre="10759" data-type="tv">⚡ Action Series</button>
+  </nav>
+
+  <!-- 3. Curated Horizontal Motion Rails -->
+  <section class="curated-rails-section" id="curatedRailsSection">
+
+    <!-- Rail 1: Trending Worldwide / Genre Spotlight -->
+    <div class="rail-group">
+      <div class="rail-header-row">
+        <div class="rail-title">
+          <span id="railShowcaseTitle">Now Trending Globally</span>
+          <span class="rail-title-tag" id="railShowcaseTag">LIVE TMDB</span>
+        </div>
+      </div>
+      <div class="rail-track-container" id="trendingTrack">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- Rail 2: Popular Blockbusters -->
+    <div class="rail-group">
+      <div class="rail-header-row">
+        <div class="rail-title">
+          <span>Popular Blockbusters</span>
+          <span class="rail-title-tag">4K CINEMA</span>
+        </div>
+      </div>
+      <div class="rail-track-container" id="moviesTrack">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- Rail 3: Top Binge-Worthy TV Series -->
+    <div class="rail-group">
+      <div class="rail-header-row">
+        <div class="rail-title">
+          <span>Top Binge-Worthy Series</span>
+          <span class="rail-title-tag">PREMIUM TV</span>
+        </div>
+      </div>
+      <div class="rail-track-container" id="tvTrack">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- Rail 4: Dynamic Title Recommendations -->
+    <div class="rail-group" id="recommendedRailGroup">
+      <div class="rail-header-row">
+        <div class="rail-title">
+          <span>Related & Recommended</span>
+          <span class="rail-title-tag">MATCHED FOR YOU</span>
+        </div>
+      </div>
+      <div class="rail-track-container" id="recommendedTrack">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- Rail 5: Director's Vision -->
+    <div class="rail-group" id="directorRailGroup">
+      <div class="rail-header-row">
+        <div class="rail-title">
+          <span id="directorRailTitle">Director Masterpieces</span>
+          <span class="rail-title-tag">FILMOGRAPHY</span>
+        </div>
+      </div>
+      <div class="rail-track-container" id="directorTrack">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 4. Liquid Floating Dock -->
+  <nav class="floating-liquid-dock" id="liquidDock">
+    <div class="dock-magnetic-pill" id="dockMagneticPill"></div>
+    <button class="dock-tab-btn active" data-tab="overview">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Overview</span>
+    </button>
+    <button class="dock-tab-btn" data-tab="cast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Cast</span>
+    </button>
+    <button class="dock-tab-btn" data-tab="director">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <span>Director</span>
+    </button>
+    <button class="dock-tab-btn" id="dockTabEpisodes" data-tab="episodes" style="display: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+      <span>Episodes</span>
+    </button>
+    <button class="dock-tab-btn" data-tab="browse">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Browse</span>
+    </button>
+  </nav>
+
+  <!-- 5. Dynamic Spring Drawer -->
+  <aside class="motion-spring-drawer" id="springDrawer">
+    <div class="drawer-header-row">
+      <div class="drawer-heading" id="drawerHeading">
+        <span id="drawerTitleText">Cast & Characters</span>
+      </div>
+      <button class="drawer-close-btn" id="closeDrawerBtn" title="Close Panel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Tab 1: Cast Grid Content -->
+    <div class="drawer-content-pane" id="paneCast">
+      <div class="drawer-cast-grid" id="drawerCastGrid">
+        <!-- Cast cards injected via app.js -->
+      </div>
+    </div>
+
+    <!-- Tab 2: Director Spotlight Content -->
+    <div class="drawer-content-pane" id="paneDirector" style="display: none;">
+      <div class="director-spotlight-box">
+        <img class="director-spotlight-photo" id="drawerDirectorPhoto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" alt="Director">
+        <div class="director-info-column">
+          <div class="director-name-title" id="drawerDirectorName">Director Spotlight</div>
+          <div class="director-bio-text" id="drawerDirectorBio">
+            Loading director biography from TMDB...
+          </div>
+          <div class="hero-genres-row" id="directorWorksChips">
+            <span class="motion-genre-chip" id="directorAwardTag">Director & Visionary</span>
+          </div>
+        </div>
+      </div>
+      <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Filmography Highlights</div>
+      <div class="rail-track-container" id="drawerDirectorFilms" style="padding: 0.5rem 0 1rem 0;">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+
+    <!-- Tab 3: Detailed Overview Content -->
+    <div class="drawer-content-pane" id="paneOverview" style="display: none;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+        <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem;">Director</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #fff;" id="overviewDirector">Denis Villeneuve</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem;">Screenplay & Writers</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #fff;" id="overviewWriters">Denis Villeneuve, Jon Spaihts, Frank Herbert</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem;">Global Box Office</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-amber);" id="overviewGross">$714.4M</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem;">Production Budget</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #fff;" id="overviewBudget">$190M</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: TV Series Seasons & Episodes Content Pane -->
+    <div class="drawer-content-pane" id="paneEpisodes" style="display: none;">
+      <div class="episodes-pane-topbar">
+        <div class="season-filter-cluster">
+          <label for="drawerSeasonSelect" class="season-label">Season</label>
+          <div class="season-select-custom-wrap">
+            <select class="custom-season-select" id="drawerSeasonSelect">
+              <option value="1">Season 1</option>
+            </select>
+          </div>
+        </div>
+        <div class="episodes-count-pill" id="drawerEpisodesCountBadge">Loading episodes...</div>
+      </div>
+      <div class="drawer-episodes-grid" id="drawerEpisodesGrid">
+        <!-- Episodes injected dynamically via app.js -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- 6. Spotlight Command Palette (Cmd+K / '/') -->
+  <div class="command-palette-backdrop" id="commandPaletteBackdrop">
+    <div class="command-palette-modal" id="commandPaletteModal">
+      <div class="command-search-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent-amber);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="command-search-input" id="commandSearchInput" placeholder="Search 4K movies, shows, Denis Villeneuve... (ESC to close)" autocomplete="off">
+        <button class="command-clear-btn" id="commandClearBtn" style="display: none;" title="Clear search">✕</button>
+      </div>
+
+      <div class="command-results-list" id="commandResultsList">
+        <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
+          Type any title to instantly search and resolve 4K streams...
+        </div>
+      </div>
+
+      <div class="command-footer">
+        <div><span>↑↓ to navigate</span> • <span style="margin-left: 0.5rem;">ENTER to play</span></div>
+        <div><span>ESC to exit</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Cinematic Video Player Modal (Flagship Full-Feature Player) -->
+  <div class="player-cinema-modal" id="playerModal">
+    <div class="cinema-video-container" id="videoContainer">
+      
+      <!-- Ambient Theater Backlight Glow -->
+      <div class="player-ambient-glow" id="playerAmbientGlow"></div>
+
+      <video id="videoElement" playsinline preload="auto"></video>
+      <iframe id="embedPlayerIframe" class="cinema-embed-iframe" style="display: none;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+
+      <!-- Subtitle Text Display Container -->
+      <div class="player-subtitles-container" id="playerSubtitlesContainer" style="display: none;">
+        <span class="subtitles-text" id="subtitlesText"></span>
+      </div>
+
+      <!-- Theatrical Event Notice Banner in Player -->
+      <div class="player-theatrical-banner" id="playerTheatricalBanner" style="display: none;">
+        <div class="theatrical-banner-left">
+          <span class="theatrical-banner-badge">🎬 THEATRICAL EVENT</span>
+          <span class="theatrical-banner-text" id="theatricalBannerText">Demon Slayer: Infinity Castle is an upcoming theatrical release. Playing verified prologue & special edition.</span>
+        </div>
+        <div class="theatrical-banner-actions">
+          <button class="theatrical-action-btn primary" id="theatricalWatchTvBtn">▶ Watch S4 Finale</button>
+          <button class="theatrical-action-btn" id="theatricalTrailerBtn">🎬 4K Trailer</button>
+          <button class="theatrical-close-btn" id="theatricalCloseBtn" aria-label="Dismiss">✕</button>
+        </div>
+      </div>
+
+      <!-- Quick Seek Gesture Ripple Overlay -->
+      <div class="player-gesture-overlay" id="playerGestureOverlay">
+        <div class="gesture-ripple left" id="gestureRippleLeft">
+          <div class="gesture-icon">↺ 10s</div>
+        </div>
+        <div class="gesture-ripple right" id="gestureRippleRight">
+          <div class="gesture-icon">10s ↻</div>
+        </div>
+      </div>
+
+      <!-- On-Screen HUD Notification Toast -->
+      <div class="player-hud-toast" id="playerHudToast">
+        <span class="hud-toast-icon" id="hudToastIcon">🔊</span>
+        <span class="hud-toast-text" id="hudToastText">100%</span>
+      </div>
+
+      <!-- Skip Intro Floating Button -->
+      <button class="player-skip-intro-btn" id="playerSkipIntroBtn" style="display: none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="3"/></svg>
+        <span>Skip Intro (+85s)</span>
+      </button>
+
+      <!-- Cinematic Pre-Roll Backdrop & Title (Zero Black Screen Void) -->
+      <div class="player-backdrop-hero" id="playerBackdropHero" style="display: none;">
+        <img class="player-backdrop-img" id="playerBackdropImg" alt="Movie Backdrop" />
+        <div class="player-backdrop-vignette"></div>
+        <div class="player-backdrop-content">
+          <div class="player-backdrop-badge" id="playerBackdropBadge">NOW PLAYING</div>
+          <h1 class="player-backdrop-title" id="playerBackdropTitle"></h1>
+          <div class="player-backdrop-sub" id="playerBackdropSub"></div>
+          <div class="player-backdrop-pulse-line"></div>
+        </div>
+      </div>
+
+      <!-- Minimalist Luxury Video Buffering Indicator -->
+      <div class="player-buffering-overlay" id="playerSpinner" style="display: none;">
+        <div class="buffering-spinner-clean">
+          <div class="clean-spinner-ring"></div>
+        </div>
+      </div>
+
+      <!-- Cinematic Click to Play with Sound Overlay -->
+      <div class="cinema-play-overlay" id="cinemaPlayOverlay" style="display: none;">
+        <div class="cinema-play-overlay-card">
+          <button class="cinema-play-overlay-btn" id="cinemaPlayOverlayBtn" aria-label="Start Watching with Sound">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+              <polygon points="6 3 20 12 6 21 6 3"/>
+            </svg>
+          </button>
+          <span class="cinema-play-overlay-label">Click to Play with Sound</span>
+        </div>
+      </div>
+
+      <!-- Streaming Telemetry & Diagnostics HUD (Phase 1 Baseline & Observability) -->
+      <div class="streaming-debug-hud" id="streamingDebugOverlay" style="display: none;">
+        <div class="debug-hud-header">
+          <div class="debug-hud-title-cluster">
+            <span class="debug-hud-pulse"></span>
+            <span class="debug-hud-title">STREAMING TELEMETRY (Shift + D)</span>
+          </div>
+          <div class="debug-hud-actions">
+            <button class="debug-hud-refresh-btn" id="debugHudRefreshBtn" title="Force Refresh">⟳</button>
+            <button class="debug-hud-close-btn" id="debugHudCloseBtn" title="Close Overlay (Shift + D)">✕</button>
+          </div>
+        </div>
+
+        <div class="debug-hud-grid">
+          <!-- Forward Buffer -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Forward Buffer</div>
+            <div class="metric-value-row">
+              <span class="metric-value" id="diagBufferSec">0.0s</span>
+              <span class="metric-badge status-critical" id="diagBufferStatus">CRITICAL</span>
+            </div>
+            <div class="metric-sub" id="diagBufferMinAvg">Min: 0.0s | Avg: 0.0s</div>
+          </div>
+
+          <!-- Sustainability Ratio -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Sustainability Ratio</div>
+            <div class="metric-value-row">
+              <span class="metric-value" id="diagSustainability">0.00</span>
+              <span class="metric-badge status-healthy" id="diagSustainStatus">HEALTHY</span>
+            </div>
+            <div class="metric-sub" id="diagSustainDetail">Load: 0ms | Dur: 0.0s</div>
+          </div>
+
+          <!-- Current Rendition & Bitrate -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Rendition & Bitrate</div>
+            <div class="metric-value" id="diagResolution">Auto (0x0)</div>
+            <div class="metric-sub" id="diagBitrate">Bitrate: 0.0 Mbps</div>
+          </div>
+
+          <!-- Estimated Bandwidth -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Est. Bandwidth</div>
+            <div class="metric-value" id="diagBandwidth">0.0 Mbps</div>
+            <div class="metric-sub" id="diagTtff">TTFF: -- ms</div>
+          </div>
+
+          <!-- Stalls & Dropped Frames -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Playback Health</div>
+            <div class="metric-value" id="diagRebuffers">0 Stalls (0 ms)</div>
+            <div class="metric-sub" id="diagDroppedFrames">Dropped: 0 / 0 (0.0%)</div>
+          </div>
+
+          <!-- Delivery Mode & Provider -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Delivery Mode & Source</div>
+            <div class="metric-value-row">
+              <span class="metric-value" id="diagDeliveryMode">PROXY</span>
+              <span class="metric-badge" id="diagDeliveryBadge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">NODE.JS</span>
+            </div>
+            <div class="metric-sub" id="diagProviderName">Source: VidFast</div>
+          </div>
+
+          <!-- Cache Performance -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Node Chunk Cache</div>
+            <div class="metric-value" id="diagCacheRatio">0.0% Hit Ratio</div>
+            <div class="metric-sub" id="diagCacheCounts">H: 0 | M: 0 | Evict: 0 (0 MB)</div>
+          </div>
+
+          <!-- Network Latency (Upstream TTFB vs Proxy) -->
+          <div class="debug-metric-card">
+            <div class="metric-label">Network Latency</div>
+            <div class="metric-value" id="diagUpstreamTtfb">TTFB: 0 ms</div>
+            <div class="metric-sub" id="diagProxyLatency">Proxy: 0 ms | GC: 0ms</div>
+          </div>
+        </div>
+
+        <div class="debug-hud-footer">
+          <div class="debug-hud-legend">
+            <span>Buffer: </span>
+            <span style="color:#ef4444">&lt;3s Critical</span> • 
+            <span style="color:#f59e0b">3-8s Low</span> • 
+            <span style="color:#10b981">8-20s Healthy</span> • 
+            <span style="color:#3b82f6">&gt;20s Full</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Motion Controls HUD -->
+      <div class="player-motion-hud" id="playerHUD">
+        
+        <!-- Top HUD Bar -->
+        <div class="hud-top-bar">
+          <div class="player-title-cluster">
+            <div class="player-title-text" id="hudPlayerTitle">Dune: Part Two</div>
+            <div class="player-sub-text" id="hudPlayerSub">1080p Full HD • VidKing Stream Proxy</div>
+          </div>
+
+          <div class="hud-top-actions">
+            <button class="nav-icon-pill server-quick-hud-pill" id="hudServerQuickBtn" title="Current Active Server">
+              <span class="hud-server-dot"></span>
+              <span id="hudServerQuickName">VidEasy 4K</span>
+            </button>
+
+            <button class="nav-icon-pill" id="ambientGlowToggleBtn" title="Toggle Ambient Cinema Glow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+
+            <button class="nav-icon-pill" id="playerShortcutsBtn" title="Keyboard Shortcuts (?)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </button>
+
+            <button class="nav-icon-pill" id="hudDiagnosticsBtn" title="Streaming Diagnostics (Shift + D)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span class="hud-btn-badge" id="hudDiagBadge" style="font-size: 10px; margin-left: 2px;">HUD</span>
+            </button>
+
+            <button class="drawer-close-btn" id="closePlayerBtn" title="Close Theater Mode (Esc)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bottom HUD Bar -->
+        <div class="hud-bottom-cluster">
+          
+          <!-- Timeline Scrubber with Hover Time Tooltip -->
+          <div class="timeline-motion-wrap" id="timelineScrubber">
+            <div class="timeline-hover-preview" id="timelineHoverPreview" style="display: none;">
+              <span id="timelineHoverTime">00:00</span>
+            </div>
+            <div class="timeline-hover-marker" id="timelineHoverMarker"></div>
+            <div class="timeline-motion-buffer" id="timelineBuffer"></div>
+            <div class="timeline-motion-progress" id="timelineProgress"></div>
+            <div class="timeline-scrubber-thumb" id="timelineThumb"></div>
+          </div>
+
+          <!-- Controls Row -->
+          <div class="hud-controls-row">
+            
+            <!-- Left Controls: Play, Nav, Volume, Time -->
+            <div class="hud-left-controls">
+              <button class="hud-play-btn" id="playPauseBtn" title="Play / Pause (Space / K)">
+                <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+
+              <button class="nav-icon-pill" id="rewind10Btn" title="Rewind 10s (← / J)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>
+              </button>
+
+              <button class="nav-icon-pill" id="forward10Btn" title="Forward 10s (→ / L)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg>
+              </button>
+
+              <!-- Next Episode Pill (For Series) -->
+              <button class="nav-icon-pill" id="nextEpisodeBtn" title="Next Episode (N)" style="display: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"/></svg>
+              </button>
+
+              <!-- Interactive Smooth Volume Cluster -->
+              <div class="hud-volume-cluster" id="hudVolumeCluster">
+                <button class="nav-icon-pill" id="muteToggleBtn" title="Mute / Unmute (M)">
+                  <svg id="volumeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  </svg>
+                </button>
+                <div class="hud-volume-slider-wrap" id="volumeSliderWrap">
+                  <div class="hud-volume-slider-track" id="volumeSliderTrack">
+                    <div class="hud-volume-slider-fill" id="volumeSliderFill" style="width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Display with Remaining Time Toggle -->
+              <div class="hud-time-display" id="timeDisplayWrap" title="Click to toggle Remaining Time">
+                <span id="currentTimeDisplay">00:00</span> / <span id="durationTimeDisplay">00:00</span>
+              </div>
+            </div>
+
+            <!-- Right Controls: Audio, CC, Speed, Quality, Fit, PiP, Fullscreen -->
+            <div class="hud-right-controls">
+              
+              <!-- Episode Drawer Trigger for TV Shows -->
+              <div class="hud-menu-wrapper" id="episodesMenuWrapper" style="display: none;">
+                <button class="nav-icon-pill episodes-hud-pill" id="openEpisodesBtn" title="Seasons & Episodes">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                  <span>Episodes</span>
+                  <span class="hud-btn-badge" id="currentEpisodeBadge">S1:E1</span>
+                </button>
+              </div>
+
+              <!-- Audio Track Selector Popover -->
+              <div class="hud-menu-wrapper">
+                <button class="nav-icon-pill" id="audioTrackBtn" title="Audio Track Language">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </button>
+                <div class="hud-popover-menu" id="audioMenu" style="display: none;">
+                  <div class="popover-menu-header">Audio Language</div>
+                  <div class="popover-menu-items" id="audioList">
+                    <button class="popover-menu-item active" data-track="0"><span>Original (English)</span> <span class="check-mark">✓</span></button>
+                    <button class="popover-menu-item" data-track="1"><span>Dolby Digital 5.1</span></button>
+                    <button class="popover-menu-item" data-track="2"><span>Stereo Enhanced</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Subtitles (CC) Selector Popover -->
+              <div class="hud-menu-wrapper">
+                <button class="nav-icon-pill" id="subtitlesBtn" title="Subtitles & Captions (C)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h3a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H7v6zM14 15h3a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3v6z"/></svg>
+                  <span class="hud-btn-badge" id="subtitlesBadge" style="display: none;">CC</span>
+                </button>
+                <div class="hud-popover-menu" id="subtitlesMenu" style="display: none;">
+                  <div class="popover-menu-header">Subtitles / CC</div>
+                  <div class="popover-menu-items" id="subtitlesList">
+                    <button class="popover-menu-item active" data-lang="off"><span>Off</span> <span class="check-mark">✓</span></button>
+                    <button class="popover-menu-item" data-lang="en"><span>English [CC]</span></button>
+                    <button class="popover-menu-item" data-lang="es"><span>Español</span></button>
+                    <button class="popover-menu-item" data-lang="fr"><span>Français</span></button>
+                    <button class="popover-menu-item" data-lang="de"><span>Deutsch</span></button>
+                    <button class="popover-menu-item" data-lang="ja"><span>日本語</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Playback Speed Popover -->
+              <div class="hud-menu-wrapper">
+                <button class="nav-icon-pill speed-pill" id="speedBtn" title="Playback Speed (&lt; / &gt;)">
+                  <span id="currentSpeedText">1.0x</span>
+                </button>
+                <div class="hud-popover-menu" id="speedMenu" style="display: none;">
+                  <div class="popover-menu-header">Playback Speed</div>
+                  <div class="popover-menu-items" id="speedList">
+                    <button class="popover-menu-item" data-speed="0.5"><span>0.5x</span></button>
+                    <button class="popover-menu-item" data-speed="0.75"><span>0.75x</span></button>
+                    <button class="popover-menu-item active" data-speed="1.0"><span>1.0x (Normal)</span> <span class="check-mark">✓</span></button>
+                    <button class="popover-menu-item" data-speed="1.25"><span>1.25x</span></button>
+                    <button class="popover-menu-item" data-speed="1.5"><span>1.5x</span></button>
+                    <button class="popover-menu-item" data-speed="1.75"><span>1.75x</span></button>
+                    <button class="popover-menu-item" data-speed="2.0"><span>2.0x</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Resolution / Quality Popover -->
+              <div class="hud-menu-wrapper">
+                <button class="nav-icon-pill quality-pill" id="qualityBtn" title="Quality / Resolution">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span id="currentQualityText">Auto</span>
+                </button>
+                <div class="hud-popover-menu" id="qualityMenu" style="display: none;">
+                  <div class="popover-menu-header">Streaming Quality</div>
+                  <div class="popover-menu-items" id="qualityList">
+                    <button class="popover-menu-item active" data-quality="-1"><span>Auto (1080p HD)</span> <span class="check-mark">✓</span></button>
+                    <button class="popover-menu-item" data-quality="1080"><span>1080p Full HD</span></button>
+                    <button class="popover-menu-item" data-quality="720"><span>720p HD</span></button>
+                    <button class="popover-menu-item" data-quality="480"><span>480p SD</span></button>
+                    <button class="popover-menu-item" data-quality="360"><span>360p Data Saver</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Aspect Ratio Fit Toggle -->
+              <button class="nav-icon-pill" id="aspectRatioBtn" title="Aspect Ratio: Fit 16:9 / CinemaScope 21:9 / Fill">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="17" x2="22" y2="17"/></svg>
+              </button>
+
+              <!-- Picture-in-Picture -->
+              <button class="nav-icon-pill" id="pipToggleBtn" title="Picture-in-Picture (P)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="12" y="10" width="8" height="7" rx="1"/></svg>
+              </button>
+
+              <!-- Fullscreen Toggle -->
+              <button class="nav-icon-pill" id="fullscreenToggleBtn" title="Toggle Fullscreen (F)">
+                <svg id="fullscreenIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- In-Player TV Show Episode Selector Drawer -->
+      <div class="player-episodes-drawer" id="playerEpisodesDrawer" style="display: none;">
+        <div class="episodes-drawer-surface">
+          <div class="episodes-drawer-header">
+            <div>
+              <div class="episodes-drawer-title" id="playerDrawerSeriesTitle">Episodes</div>
+              <div class="player-season-picker-wrap">
+                <select class="custom-season-select" id="playerSeasonSelect">
+                  <option value="1">Season 1</option>
+                </select>
+              </div>
+            </div>
+            <button class="drawer-close-btn" id="closeEpisodesDrawerBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="episodes-drawer-list" id="playerEpisodesList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts Cheat-Sheet Overlay Modal -->
+      <div class="player-shortcuts-modal" id="playerShortcutsModal" style="display: none;">
+        <div class="shortcuts-surface">
+          <div class="shortcuts-header">
+            <div class="shortcuts-title">⌨️ Keyboard Shortcuts</div>
+            <button class="drawer-close-btn" id="closeShortcutsBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="shortcuts-grid">
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>Space</kbd> / <kbd>K</kbd></div><span>Play / Pause</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>←</kbd> / <kbd>→</kbd></div><span>Seek 10 Seconds</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>J</kbd> / <kbd>L</kbd></div><span>Seek 10 Seconds</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>↑</kbd> / <kbd>↓</kbd></div><span>Volume ±5%</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>M</kbd></div><span>Mute / Unmute</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>F</kbd></div><span>Toggle Fullscreen</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>P</kbd></div><span>Picture-in-Picture</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>C</kbd></div><span>Toggle Subtitles</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>&lt;</kbd> / <kbd>&gt;</kbd></div><span>Speed Down / Up</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>0</kbd> - <kbd>9</kbd></div><span>Jump to 0% - 90%</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>S</kbd></div><span>Skip Intro (+85s)</span></div>
+            <div class="shortcut-item"><div class="shortcut-keys"><kbd>?</kbd></div><span>Toggle Shortcuts</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CINEFLOW MULTI-SERVER SWITCHER BAR (Pixel-Perfect Match to Screenshot) -->
+    <div class="cineflow-servers-bar-card" id="serversBarContainer">
+      <div class="servers-bar-header">
+        <div class="servers-label-stack">
+          <span class="servers-micro-label">SERVERS</span>
+          <span class="servers-active-title" id="serversActiveTitle">VidEasy</span>
+        </div>
+        <button class="servers-reload-btn" id="serversReloadBtn" title="Reload / Re-sync Server (R)" aria-label="Reload Server">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Primary 9 Server Pills Row (Screenshot Exact Order) -->
+      <div class="servers-pills-row" id="serversPrimaryPillsRow">
+        <!-- Dynamically rendered pills via JS -->
+        <button class="server-pill-toggle" id="serversToggleFewerMoreBtn">
+          <span id="serversToggleLabel">MORE</span>
+          <svg id="serversToggleChevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Collapsible Expandable Secondary Drawer (Remaining 11 Servers) -->
+      <div class="servers-drawer-expandable" id="serversDrawerExpandable" style="display: none;">
+        <div class="servers-drawer-group">
+          <div class="servers-drawer-group-title">HIGH-SPEED 4K &amp; FULL HD MIRRORS</div>
+          <div class="servers-drawer-pills" id="serversMirrorsPills"></div>
+        </div>
+        <div class="servers-drawer-group">
+          <div class="servers-drawer-group-title">DEDICATED ANIME &amp; ASIAN DRAMA ENGINES</div>
+          <div class="servers-drawer-pills" id="serversAnimePills"></div>
+        </div>
+      </div>
+
+      <!-- Footer Row with FAQ Link -->
+      <div class="servers-bar-footer">
+        <button class="servers-faq-trigger-btn" id="serversFaqTriggerBtn">
+          <span>FAQ</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 10. Server Architecture & FAQ Modal (Inside Player Stacking Context) -->
+    <div class="general-motion-modal" id="serverFaqModal" style="display: none;">
+      <div class="modal-content-surface server-faq-surface">
+        <div class="server-faq-header">
+          <div class="server-faq-title-wrap">
+            <span class="server-faq-tag">NETWORK ARCHITECTURE</span>
+            <div class="server-faq-title">CineFlow Multi-Server Grid FAQ</div>
+          </div>
+          <button class="drawer-close-btn" id="closeServerFaqBtn" title="Close FAQ (Esc)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="server-faq-body">
+          <div class="faq-accordion-card">
+            <div class="faq-question">🌟 What makes VidEasy (4K) special?</div>
+            <div class="faq-answer"><strong>VidEasy</strong> is our flagship 4K Ultra HD server. It provides raw direct HLS manifests with uncompressed multi-language audio dub tracks (English, Hindi, Spanish, French, German, Japanese) and Dolby Atmos surround sound with zero external ads.</div>
+          </div>
+
+          <div class="faq-accordion-card">
+            <div class="faq-question">⚡ Which servers are best for mobile or slow internet?</div>
+            <div class="faq-answer"><strong>VidLink</strong> and <strong>VidBolt</strong> are specifically engineered for fast startup. VidBolt uses 2-second low-latency chunk segments so playback begins within 300ms even on cellular connections.</div>
+          </div>
+
+          <div class="faq-accordion-card">
+            <div class="faq-question">🎌 Which servers should I use for Anime &amp; Asian Dramas?</div>
+            <div class="faq-answer">For anime, use <strong>Miruro</strong> (master Japanese audio channel) or <strong>Megacloud</strong> (Zoro/HiAnime soft-subs with intro skip). For Korean, Chinese, and Asian dramas, <strong>KissKH</strong> provides verified subbed episodes within minutes of release.</div>
+          </div>
+
+          <div class="faq-accordion-card">
+            <div class="faq-question">🛡️ What is AdRock and how does it block ads?</div>
+            <div class="faq-answer"><strong>AdRock</strong> (VidRock) uses server-side AES-256 encrypted payload routing to stream clean media chunks directly through encrypted edge tunnels, stripping third-party ad popups completely.</div>
+          </div>
+
+          <div class="faq-accordion-card">
+            <div class="faq-question">🔄 What if a server fails or buffers?</div>
+            <div class="faq-answer">Click the reload button <strong>↻</strong> on the top-right of the SERVERS bar, or switch with 1-click to any of our 19 fallback servers such as <strong>VidCore</strong>, <strong>Embed.su</strong>, or <strong>SuperEmbed</strong> (which features 20+ automated backup mirrors).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 8. Official Trailer YouTube Modal -->
+  <div class="general-motion-modal" id="trailerModal">
+    <div class="modal-content-surface" style="padding: 0; overflow: hidden; max-width: 960px; aspect-ratio: 16/9; background: #000;">
+      <button class="drawer-close-btn" id="closeTrailerBtn" style="position: absolute; top: 1rem; right: 1rem; z-index: 10; background: rgba(0,0,0,0.7);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <iframe id="trailerIframe" src="" style="width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 9. Stream Export (yt-dlp / MPV) Modal -->
+  <div class="general-motion-modal" id="exportModal">
+    <div class="modal-content-surface">
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+        <div style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff;">Stream Export & CLI Tools</div>
+        <button class="drawer-close-btn" id="closeExportBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">Direct HLS Stream URL</div>
+          <div style="display: flex; gap: 0.8rem;">
+            <input type="text" id="streamUrlInput" readonly style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); padding: 0.8rem 1rem; border-radius: 12px; color: #fff; font-family: var(--font-mono); font-size: 0.85rem;" value="Resolving...">
+            <button class="btn-glass-trailer" id="copyStreamUrlBtn" style="padding: 0.8rem 1.4rem; font-size: 0.85rem;">Copy</button>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">yt-dlp Download Command</div>
+          <div style="display: flex; gap: 0.8rem;">
+            <input type="text" id="ytdlpCommandInput" readonly style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); padding: 0.8rem 1rem; border-radius: 12px; color: #fff; font-family: var(--font-mono); font-size: 0.85rem;" value="Generating...">
+            <button class="btn-glass-trailer" id="copyYtdlpBtn" style="padding: 0.8rem 1.4rem; font-size: 0.85rem;">Copy</button>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">MPV Direct Player Command</div>
+          <div style="display: flex; gap: 0.8rem;">
+            <input type="text" id="mpvCommandInput" readonly style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); padding: 0.8rem 1rem; border-radius: 12px; color: #fff; font-family: var(--font-mono); font-size: 0.85rem;" value="Generating...">
+            <button class="btn-glass-trailer" id="copyMpvBtn" style="padding: 0.8rem 1.4rem; font-size: 0.85rem;">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="motion-toast-pill" id="toastPill">Notification</div>
+
+  <!-- Static Offline Archive Catalog -->
+  <script src="staticCatalog.js"></script>
+
+  <!-- Main Motion Controller Script -->
+  <script src="app.js?v=motion_v1"></script>
+</body>
+</html>

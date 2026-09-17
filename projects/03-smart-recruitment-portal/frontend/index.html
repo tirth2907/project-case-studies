@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Recruitment Portal - Talent Acquisition Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <header>
+        <h1>
+            <a href="#">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1"></path><path d="M18 8h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-4"></path><circle cx="8" cy="12" r="2"></circle></svg>
+                </span>
+                <span>SmartRecruit</span>
+            </a>
+        </h1>
+        <nav>
+            <a href="#" class="active">Talent Pipeline</a>
+            <a href="#">Requisitions</a>
+            <a href="#">Scorecards</a>
+            <span class="hero-pill-badge" style="margin-left: 1rem;">Enterprise Recruiter Demo</span>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-pill">
+                <span class="hero-pill-badge">Pipeline Live</span>
+                <span>Role-Based Applicant Tracking</span>
+            </div>
+            <h2>Enterprise Recruitment & Candidate Lifecycle</h2>
+            <p>Streamlined talent acquisition with automated stage transitions, role-based access control, and interview scorecards.</p>
+        </section>
+
+        <!-- KPI Metrics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card glow-card">
+                <div class="stat-value">142</div>
+                <div class="stat-label">Active Candidates</div>
+            </div>
+            <div class="stat-card glow-card">
+                <div class="stat-value">18</div>
+                <div class="stat-label">Open Requisitions</div>
+            </div>
+            <div class="stat-card glow-card">
+                <div class="stat-value">94%</div>
+                <div class="stat-label">Offer Acceptance Rate</div>
+            </div>
+            <div class="stat-card glow-card">
+                <div class="stat-value">12 Days</div>
+                <div class="stat-label">Avg. Time to Hire</div>
+            </div>
+        </div>
+
+        <!-- Recruitment Pipeline Board -->
+        <div class="glow-card" style="margin-top: 2rem; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.3rem; margin: 0;">Active Candidate Pipeline</h3>
+                <span style="font-size: 0.9rem; color: var(--text-secondary);">Filtered by: Engineering & Product</span>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.85rem;">
+                        <th style="padding: 12px 16px;">Candidate</th>
+                        <th style="padding: 12px 16px;">Role Requisition</th>
+                        <th style="padding: 12px 16px;">Department</th>
+                        <th style="padding: 12px 16px;">Stage</th>
+                        <th style="padding: 12px 16px;">Match Score</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 0.95rem;">
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 14px 16px; font-weight: 600;">Sarah Lin</td>
+                        <td style="padding: 14px 16px;">Senior Frontend Architect</td>
+                        <td style="padding: 14px 16px;">Engineering</td>
+                        <td style="padding: 14px 16px;"><span class="hero-pill-badge" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;">Technical Evaluation</span></td>
+                        <td style="padding: 14px 16px; font-weight: 700; color: #22c55e;">96%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 14px 16px; font-weight: 600;">Marcus Vance</td>
+                        <td style="padding: 14px 16px;">Lead Product Designer</td>
+                        <td style="padding: 14px 16px;">Design & UX</td>
+                        <td style="padding: 14px 16px;"><span class="hero-pill-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">Portfolio Review</span></td>
+                        <td style="padding: 14px 16px; font-weight: 700; color: #c084fc;">92%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 14px 16px; font-weight: 600;">Priya Sharma</td>
+                        <td style="padding: 14px 16px;">Full-Stack Engineer</td>
+                        <td style="padding: 14px 16px;">Engineering</td>
+                        <td style="padding: 14px 16px;"><span class="hero-pill-badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">Leadership Interview</span></td>
+                        <td style="padding: 14px 16px; font-weight: 700; color: #60a5fa;">89%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+/* Luxury Shimmer & Light Sweeps */
+@keyframes goldSweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+/* Breathing Glow on Flash Sales / Badges */
+@keyframes pulseAura {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(212, 175, 55, 0.65), 0 0 6px rgba(245, 222, 153, 0.9);
+    transform: scale(1.02);
+  }
+}
+
+/* Subtle Floating Effect for Key Jewels */
+@keyframes floatJewel {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Continuous Header Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Slide in from right (Drawer) */
+@keyframes slideRightIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide in from bottom (Mobile Filter Sheet & Quick View) */
+@keyframes slideBottomIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Smooth Fade & Scale Entrance for Modals */
+@keyframes modalZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Staggered Card Fade In */
+@keyframes fadeCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulsing Hotspot for Lookbook */
+@keyframes hotspotRipple {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.8);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 16px rgba(212, 175, 55, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+/* Utility Animation Classes */
+.animate-pulse-aura {
+  animation: pulseAura 2.5s infinite var(--ease-smooth);
+}
+
+.animate-float {
+  animation: floatJewel 5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeCardIn 0.5s var(--ease-spring) forwards;
+}
+
+/* Kinetic Line-by-Line Clip Path Text Reveal */
+@keyframes clipTextReveal {
+  0% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.kinetic-reveal-line {
+  display: inline-block;
+  animation: clipTextReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.kinetic-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.kinetic-delay-2 {
+  animation-delay: 0.25s;
+}
+
+.kinetic-delay-3 {
+  animation-delay: 0.4s;
+}
+
+/* Subtle Specular Sheen (Replaces harsh border flash) */
+@keyframes specularSweep {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.specular-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(158, 127, 76, 0.15), transparent);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Tactile Micro-Press Feedback */
+.tactile-stepper {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.tactile-stepper:active {
+  transform: scale(0.90) !important;
+}
+
+/* Rolling Number Odometer Transition */
+@keyframes numberSlideUp {
+  0% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.number-rolling {
+  display: inline-block;
+  animation: numberSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Live Concierge Pulsing Beacon */
+@keyframes livePulseDot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.beacon-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #25d366;
+  border-radius: 50%;
+  animation: livePulseDot 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+

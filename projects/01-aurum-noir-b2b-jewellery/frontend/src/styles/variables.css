@@ -1,0 +1,55 @@
+:root {
+  /* Official Brand Palette: Maison Vendôme (Cashmere Greige & Tuscan Bronze) */
+  --bg-primary: #f6f3ee;          /* Warm Cashmere Linen Paper */
+  --bg-secondary: #ece7de;        /* Soft French Limestone */
+  --bg-card: rgba(255, 255, 255, 0.94); /* Smooth Alabaster Plinth */
+  --bg-surface-dark: #e4ded3;     /* Muted Grout Surface */
+  --bg-ivory: #ffffff;
+  --bg-ivory-soft: #f2ede4;
+
+  /* Typography - Deep Roasted Espresso Charcoal & Mineral Tones */
+  --text-primary: #1c1917;        /* Deep Roasted Espresso Charcoal */
+  --text-secondary: #57514a;      /* Warm Mineral Taupe */
+  --text-muted: #857e74;          /* Soft Sandstone Slate */
+  --text-dark: #1c1917;
+
+  /* Tuscan Bronze & Antique Gilt (Desaturated, Architectural) */
+  --gold-primary: #9e7f4c;        /* Tuscan Bronze / Antique Gilt */
+  --gold-light: #bfa374;          /* Soft Bronze Sheen */
+  --gold-dark: #6e542d;           /* Deep Burnished Bronze */
+  --gold-border: rgba(158, 127, 76, 0.20); /* Micro-Hairline Bronze Wire */
+  --gold-border-bright: rgba(158, 127, 76, 0.40);
+  --gold-glow: none;
+
+  /* Gradients & Surfaces */
+  --gold-gradient: linear-gradient(135deg, #a88a56 0%, #8c6e3d 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #b89862 0%, #9e7f4c 100%);
+  --emerald-gradient: linear-gradient(180deg, #f6f3ee 0%, #ece7de 100%);
+  --emerald-radial: radial-gradient(circle at 50% 0%, rgba(225, 215, 200, 0.45) 0%, #f6f3ee 80%);
+  --glass-bg: rgba(255, 255, 255, 0.90);
+  --header-bg: rgba(246, 243, 238, 0.96);
+  --topbar-bg: #eae4d9;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Elevations - Soft Depth Without Harsh Glare */
+  --shadow-sm: 0 4px 12px rgba(28, 25, 23, 0.05);
+  --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 16px 40px rgba(28, 25, 23, 0.12);
+  --shadow-gold: none;
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}

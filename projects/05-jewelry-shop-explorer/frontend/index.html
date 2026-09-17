@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jewelry & Silver Shop Explorer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="sidebar glass-panel">
+        <header>
+          <div class="brand-row">
+            <span class="brand-icon">✨</span>
+            <div>
+              <h1>Jewelry Explorer</h1>
+              <p class="subtitle">Find & route top jewelry & silver ateliers</p>
+            </div>
+          </div>
+          <div class="engine-badge">
+            <span class="engine-dot"></span>
+            <span>OpenStreetMap & OSRM (100% Free • No API Key)</span>
+          </div>
+        </header>
+        
+        <div class="controls">
+          <label class="control-label">Search Location or City</label>
+          <div class="location-input-group">
+            <input type="text" id="location-input" placeholder="e.g. Paris, New York, Jaipur..." autocomplete="off" />
+            <button id="search-location-btn" class="btn outline-icon" title="Search this location">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+            <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden"></div>
+          </div>
+
+          <div class="quick-chips">
+            <span class="chips-label">Popular:</span>
+            <button class="chip" data-city="Paris, France" data-lat="48.8566" data-lng="2.3522">Paris</button>
+            <button class="chip" data-city="New York, USA" data-lat="40.7128" data-lng="-74.0060">New York</button>
+            <button class="chip" data-city="London, UK" data-lat="51.5074" data-lng="-0.1278">London</button>
+            <button class="chip" data-city="Jaipur, India" data-lat="26.9124" data-lng="75.7873">Jaipur</button>
+          </div>
+
+          <div class="divider"><span>OR</span></div>
+          
+          <button id="locate-me-btn" class="btn secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </svg>
+            <span>Use My Location</span>
+          </button>
+        </div>
+
+        <div class="action-panel" id="action-panel">
+          <div class="location-status-card">
+            <span class="status-icon">📍</span>
+            <div>
+              <span class="status-label">Active Center:</span>
+              <p id="current-location-text">Paris, France</p>
+            </div>
+          </div>
+          
+          <div class="search-options">
+            <div class="field-group">
+              <label>Specialty Keywords:</label>
+              <input type="text" id="keyword-input" value="jewelry stores, silver, handmade, gemstones" placeholder="e.g. silver, diamond, gold" />
+            </div>
+            
+            <div class="field-group">
+              <label>Search Radius:</label>
+              <select id="radius-input">
+                <option value="3000">3 km (Local Walk)</option>
+                <option value="6000" selected>6 km (City Center)</option>
+                <option value="12000">12 km (Metro Area)</option>
+                <option value="25000">25 km (Regional)</option>
+              </select>
+            </div>
+          </div>
+          <button id="find-shops-btn" class="btn primary accent">
+            <span>🔍 Discover Jewelry Shops</span>
+          </button>
+        </div>
+
+        <div class="results-container">
+          <div class="results-header hidden" id="results-header">
+            <div>
+              <h3 id="results-count-title">Discovered Shops</h3>
+              <p id="results-subtext" class="results-subtext">Click any shop to view on map</p>
+            </div>
+            <button id="generate-route-btn" class="btn route-btn" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+              </svg>
+              <span>Build Route</span>
+            </button>
+          </div>
+
+          <!-- Route Stats Card -->
+          <div id="route-stats-card" class="route-stats-card hidden">
+            <div class="route-stats-header">
+              <span class="route-title">🗺️ Optimized Jewelry Tour</span>
+              <button id="clear-route-btn" class="clear-link">Clear</button>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-value" id="stat-distance">-- km</span>
+                <span class="stat-label">Total Drive</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="stat-duration">-- min</span>
+                <span class="stat-label">Est. Time</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="stat-stops">0</span>
+                <span class="stat-label">Boutique Stops</span>
+              </div>
+            </div>
+          </div>
+
+          <ul id="shop-list" class="shop-list">
+            <!-- Dynamic shop cards -->
+          </ul>
+          
+          <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p id="loading-text">Scanning area for fine jewelry & silver ateliers...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="map-container">
+        <div id="map"></div>
+        <div class="map-overlay-badge">
+          <span>✨ OpenStreetMap • Carto Dark Matter</span>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
