@@ -11,7 +11,7 @@ export const Header = ({ onNavigate, currentView, searchQuery, setSearchQuery, o
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 900, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', background: 'var(--header-bg)', borderBottom: '1px solid var(--gold-border)' }}>
+    <header style={{ position: 'sticky', top: 0, zIndex: 900, backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)', background: 'var(--header-bg)', borderBottom: '1px solid var(--glass-border)', boxShadow: '0 4px 24px rgba(28, 25, 23, 0.04), inset 0 -1px 0 rgba(255, 255, 255, 0.8)' }}>
       {/* Top B2B Announcement Bar */}
       <div style={{ background: 'var(--topbar-bg)', borderBottom: '1px solid rgba(255, 255, 255, 0.04)', padding: '0.45rem 1rem', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>

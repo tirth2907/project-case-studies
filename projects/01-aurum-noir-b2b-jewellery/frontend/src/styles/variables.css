@@ -26,9 +26,20 @@
   --gold-gradient-hover: linear-gradient(135deg, #b89862 0%, #9e7f4c 100%);
   --emerald-gradient: linear-gradient(180deg, #f6f3ee 0%, #ece7de 100%);
   --emerald-radial: radial-gradient(circle at 50% 0%, rgba(225, 215, 200, 0.45) 0%, #f6f3ee 80%);
-  --glass-bg: rgba(255, 255, 255, 0.90);
-  --header-bg: rgba(246, 243, 238, 0.96);
-  --topbar-bg: #eae4d9;
+  /* Clinic-Grade Luxury Frosted Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-subtle: rgba(246, 243, 238, 0.65);
+  --glass-bg-card: rgba(255, 255, 255, 0.76);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.88);
+  --card-hover-bg: rgba(255, 255, 255, 0.94);
+  --glass-border: rgba(158, 127, 76, 0.16);
+  --glass-border-specular: rgba(255, 255, 255, 0.85);
+  --glass-border-hover: rgba(158, 127, 76, 0.38);
+  --glass-shadow: 0 10px 30px -4px rgba(28, 25, 23, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --glass-shadow-hover: 0 20px 48px -8px rgba(28, 25, 23, 0.12), inset 0 1px 0 #ffffff;
+
+  --header-bg: rgba(246, 243, 238, 0.78);
+  --topbar-bg: rgba(234, 228, 217, 0.82);
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;

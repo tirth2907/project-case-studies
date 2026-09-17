@@ -69,14 +69,14 @@ export const FloatingDock = ({ onNavigate, onOpenB2BModal, b2bBuyer }) => {
           display: 'flex',
           alignItems: 'center',
           gap: '0.65rem',
-          background: 'var(--bg-card)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          border: '1px solid var(--gold-border)',
+          background: 'rgba(255, 255, 255, 0.76)',
+          backdropFilter: 'blur(28px) saturate(190%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(190%)',
+          border: '1px solid rgba(158, 127, 76, 0.22)',
           borderRadius: '999px',
           padding: '0.45rem 0.8rem',
-          boxShadow: 'var(--shadow-md)',
-          transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          boxShadow: '0 16px 45px rgba(28, 25, 23, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95)',
+          transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         {dockItems.map((item, idx) => {

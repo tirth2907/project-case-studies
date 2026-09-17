@@ -78,21 +78,39 @@ h1, h2, h3, h4, .font-serif {
   padding: 4.5rem 0;
 }
 
-/* Clean, Understated Glassmorphic Cards (NO HARSH BORDER HOVER) */
-.glass-card {
+/* Clinic-Grade Luxury Glassmorphism Engine */
+.glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--gold-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
-/* Refined Subtle Hover: ONLY soft depth elevation, NO flashing border change */
+.glass-card {
+  background: var(--glass-bg-card);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .glass-card:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--glass-border-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(28, 25, 23, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* ==========================================================================
@@ -272,18 +290,22 @@ h1, h2, h3, h4, .font-serif {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--bg-card);
+  background: var(--glass-bg-card);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--gold-border);
+  border: 1px solid var(--glass-border);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth), background 0.35s ease;
   cursor: pointer;
 }
 
 .plinth-card:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--gold-border-bright);
+  background: var(--card-hover-bg);
+  box-shadow: var(--glass-shadow-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-4px);
 }
 
 /* 4:5 Vertical Portrait Ratio Image Stage */
@@ -557,10 +579,12 @@ h1, h2, h3, h4, .font-serif {
   width: 100%;
   max-width: 940px;
   max-height: 88vh;
-  background: #ffffff;
-  border: 1px solid var(--gold-border);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
-  box-shadow: 0 25px 60px -15px rgba(28, 25, 23, 0.25), 0 0 35px rgba(158, 127, 76, 0.12);
+  box-shadow: 0 30px 70px -15px rgba(28, 25, 23, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 0 35px rgba(158, 127, 76, 0.10);
   display: flex;
   flex-direction: column;
   overflow: hidden;
