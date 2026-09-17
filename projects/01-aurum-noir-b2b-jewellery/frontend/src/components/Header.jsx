@@ -175,7 +175,7 @@ export const Header = ({ onNavigate, currentView, searchQuery, setSearchQuery, o
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div style={{ background: '#081c15', borderTop: '1px solid rgba(212,175,55,0.2)', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ background: '#ffffff', borderTop: '1px solid var(--gold-border)', boxShadow: '0 12px 30px rgba(28, 25, 23, 0.12)', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {[
             { id: 'home', label: 'Wholesale Home' },
             { id: 'catalog', label: 'B2B Full Catalogue' },

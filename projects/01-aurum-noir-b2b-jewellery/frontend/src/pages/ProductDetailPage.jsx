@@ -96,16 +96,16 @@ export const ProductDetailPage = ({
               paddingTop: '110%',
               borderRadius: 'var(--radius-lg)',
               overflow: 'hidden',
-              background: '#0a1a14',
-              border: '1px solid rgba(212, 175, 55, 0.25)',
-              boxShadow: '0 20px 45px rgba(0,0,0,0.6)',
+              background: 'var(--bg-secondary)',
+              border: '1px solid var(--gold-border)',
+              boxShadow: '0 16px 40px rgba(28, 25, 23, 0.12)',
               cursor: showVideo ? 'default' : 'crosshair'
             }}
           >
             {showVideo ? (
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#081c15', padding: '2rem', textAlign: 'center' }}>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f5f2ec', padding: '2rem', textAlign: 'center' }}>
                 <Sparkles size={48} color="var(--gold-primary)" style={{ marginBottom: '1rem' }} />
-                <h4 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: '0.5rem' }}>Studio Sparkle Reel</h4>
+                <h4 style={{ color: 'var(--text-primary)', fontSize: '1.2rem', fontFamily: 'var(--font-serif)', marginBottom: '0.5rem', fontWeight: 600 }}>Studio Sparkle Reel</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', maxWidth: '320px', marginBottom: '1rem' }}>
                   Micro-gold plating and Jadau Kundan shine preview under showcase halogen spotlight.
                 </p>
